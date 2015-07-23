@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="scripts/JSXTransformer.js"></script>
+	<script type="text/javascript" src="scripts/react.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+	<script type="text/jsx">
+		var Hello = React.createClass({
+			getInitialState: function(){
+				return {
+					opacity: 1.0
+				};
+			},
+			/**
+			 * mounting 组件已插入DOM
+			 * updating 组件正在被渲染
+			 * unmounting 组件已移出真实DOM
+			 * componentDidMount 组件插入真实的DOM后执行该方法
+			 * @return {[type]} [description]
+			 */
+			componentDidMount: function(){
+				this.timer = setInterval(function(){
+					var opacity = this.state.opacity;
+
+					opacity -= 0.05;
+
+					if(opacity < 0.1){
+						opacity = 1.0;
+					}
+
+					this.setState({
+						opacity: opacity
+					});
+				}.bind(this), 100);
+			},
+
+			render: function(){
+				return (
+					<div style={{opacity: this.state.opacity}} >
+						Hello {this.props.name}
+					</div>
+				);
+			}
+		});
+
+		React.render(
+			<Hello name="guoyongfeng" />,
+			document.getElementById('example')
+		);
+	</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="scripts/react.js"></script>
+	<script type="text/javascript" src="scripts/JSXTransformer.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+	<script type="text/jsx">
+
+		var Button = React.createClass({
+			getInitialState: function(){
+				return {
+					liked: false,
+					flag: '1111111'
+				};
+			},
+
+			bind: function(){
+				this.setState({
+					liked: !this.state.liked
+				});
+			},
+
+			render: function () {
+				// render之前执行getInitialState，通过this.state
+				var text = this.state.liked ? 'like' : "no't like";
+
+				return (
+					<p onClick = {this.bind}>
+						You {text} this.Click to toggle.
+						and,get initial state {this.state.flag} for test.
+					</p>
+				);
+			}
+		});
+
+		React.render(
+			<Button />,
+			document.getElementById('example')
+		);
+	</script>
+</body>
+</html>

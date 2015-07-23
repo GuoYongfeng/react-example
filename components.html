@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="scripts/react.js"></script>
+	<script type="text/javascript" src="scripts/JSXTransformer.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+	<div id="child"></div>
+	<div id="node"></div>
+	<script type="text/jsx">
+		// component 1
+		var Message = React.createClass({
+			render: function () {
+				return <a href="this.props.name">hi,{this.props.name}</a>
+			}
+		});
+
+		React.render(
+			<Message name="www.ppzuche.com" />, 
+			document.getElementById('example')
+		);
+		// component 2 : children node usatage
+		var NotesList = React.createClass({
+			render: function(){
+				return (
+					<ul>
+						{
+							this.props.children.map(function(child){
+								return <li>{child}</li>
+							})
+						}
+					</ul>
+				);
+			}
+		});
+
+		React.render(
+			<NotesList>
+				<a href="https://www.baidu.com">baidu</a>
+				<a href="http://www.ppzuche.com">ppzuche</a>
+			</NotesList>,
+			document.getElementById('child')
+		);
+		// component 3 : dom handle
+		var NodeRender = React.createClass({
+
+			bindEvent: function(event){
+				var el = React.findDOMNode(this.refs.myTextInput);
+
+				el.focus();
+			
+				console.log(event);
+
+			},
+
+			render: function(){
+				return (
+					<div>
+						<input type="text" ref="myTextInput" />
+						<input type="button" 
+							value="click me"
+							onClick = {this.bindEvent} />
+					</div>
+				);
+			}
+		});
+
+		React.render(
+			<NodeRender />,
+			document.getElementById('node')
+		);
+	</script>
+</body>
+</html>

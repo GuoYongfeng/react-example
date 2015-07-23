@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="scripts/react.js"></script>
+	<script type="text/javascript" src="scripts/JSXTransformer.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+	<div id="add"></div>
+	<script type="text/jsx">
+
+		var names = ['guo', 'yong', 'feng'];
+		var arr = [
+			<h3>awesome</h3>,
+			<span>guoyongfeng</span>
+		];
+
+		React.render(
+			<div>
+				{
+					names.map(function(name){
+						return <h3>{name}</h3>;
+					})
+				}
+			</div>,
+			document.getElementById('example')
+		);
+
+		React.render(
+			<div className="ex">
+				{arr}
+			</div>,
+			document.getElementById('add')
+		);
+	</script>
+</body>
+</html>
